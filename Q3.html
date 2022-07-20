@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homework 0720</title>
+</head>
+<style>
+    .box{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body onload="random_color()">
+    <div class="box"></div>
+    <button type="button" onclick="set_R()">R</button>
+    <button type="button" onclick="set_G()">G</button>
+    <button type="button" onclick="set_B()">B</button>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+
+</body>
+</html>
+<script>
+    var box = document.querySelector('.box');
+    var r, g, b;
+
+    function random_color(){
+        r = Math.floor(Math.random() * 256); //隨機生成256以內r值
+        g = Math.floor(Math.random() * 256); //隨機生成256以內g值
+        b = Math.floor(Math.random() * 256); //隨機生成256以內b值
+        box.style.background = `rgb(${r},${g},${b})`;
+        document.getElementById("demo1").innerHTML = r;
+        document.getElementById("demo2").innerHTML = g;
+        document.getElementById("demo3").innerHTML = b;
+    }
+
+    function set_R(){
+        var color_val = prompt("請輸入紅色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${color_val},${g},${b})`;
+            r = color_val
+            document.getElementById("demo1").innerHTML = color_val;
+            document.getElementById("demo2").innerHTML = g;
+            document.getElementById("demo3").innerHTML = b;
+        }
+        else {
+            set_R();
+        }
+    }
+
+    function set_G(){
+        var color_val = prompt("請輸入綠色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${r},${color_val},${b})`;
+            g = color_val
+            document.getElementById("demo2").innerHTML = color_val;
+            document.getElementById("demo1").innerHTML = r;
+            document.getElementById("demo3").innerHTML = b;
+        }
+        else {
+            set_G();
+        }
+    }
+
+    function set_B(){
+        var color_val = prompt("請輸入藍色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${r},${g},${color_val})`;
+            b = color_val
+            document.getElementById("demo3").innerHTML = color_val;
+            document.getElementById("demo1").innerHTML = r;
+            document.getElementById("demo2").innerHTML = g;
+        }
+        else {
+            set_B();
+        }
+    }
+
+</script>
