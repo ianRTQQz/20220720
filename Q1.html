@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homework 0720</title>
+</head>
+<style>
+    .box{
+        width: 100px;
+        height: 100px;
+        background-color:red;
+    }
+</style>
+<body>
+    <div class="box"></div>
+    <button type="button" onclick="display_square()">正方形</button>
+    <button type="button" onclick="display_circle()">圓形</button>
+    <button type="button" onclick="display_triangle()">三角形</button>
+</body>
+</html>
+    <script>
+        function display_square(){
+            var box = document.querySelector('.box');
+            box.style= "width: 100px;\
+                        height: 100px;\
+                        background: red;\
+                        ";
+        }
+        function display_circle(){
+            var box = document.querySelector('.box');
+            box.style= "width: 100px;\
+                        height: 100px;\
+                        background: red;\
+                        border-radius: 50%;\
+                        ";
+        }
+        function display_triangle(){
+            var box = document.querySelector('.box');
+            box.style= "width: 0px;\
+                        height: 0px;\
+                        border-left: 50px solid transparent;\
+                        border-right: 50px solid transparent;\
+                        border-bottom: 86.6px solid red;\
+                        background-color: transparent;\
+                        ";
+        }
+    </script>
