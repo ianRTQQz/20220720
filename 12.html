@@ -4,36 +4,19 @@
     <title>My Homework 0720</title>
 </head>
 <body>
-  
-    <div class="box"></div>
-    <button type="button" onclick="display_square()">正方形</button>
-    <button type="button" onclick="display_circle()">圓形</button>
-    <button type="button" onclick="display_triangle()">三角形</button>
+    <div id="hexval"></div>
+    <input type="range" min="0" max="255" id="RR" oninput="range()">
 </body>
 </html>
     <script>
-        function display_square(){
-            var box = document.querySelector('.box');
-            box.style= "width: 100px;\
-                        height: 100px;\
-                        background: red;\
-                        ";
+        function range(){
+            var val = document.getElementById("RR").value;
+            document.getElementById('hexval').innerHTML = parseInt(val, 10).toString(16)
         }
-        function display_circle(){
-            var box = document.querySelector('.box');
-            box.style= "width: 100px;\
-                        height: 100px;\
-                        background: red;\
-                        border-radius: 50%;\
-                        ";
+
+        function ColorToHex(color) {
+            
         }
-        function display_triangle(){
-            var box = document.querySelector('.box');
-            box.style= "width: 0;\
-                        height: 0;\
-                        border-left: 50px solid transparent;\
-                        border-right: 50px solid transparent;\
-                        border-bottom: 86.6px solid red;\
-                        ";
-        }
+
+
     </script>
