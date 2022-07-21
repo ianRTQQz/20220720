@@ -3,20 +3,142 @@
 <head>
     <title>My Homework 0720</title>
 </head>
-<body>
+<body onload="start_game()">
     <div id="hexval"></div>
     <input type="range" min="0" max="255" id="RR" oninput="range()">
 </body>
 </html>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function range(){
             var val = document.getElementById("RR").value;
             document.getElementById('hexval').innerHTML = parseInt(val, 10).toString(16)
         }
-
-        function ColorToHex(color) {
-            
+        function fail(){
+            Swal.fire({
+                title: "失敗",
+                text: "可悲阿",
+            });
         }
-
-
+        function Q4(){
+            Swal.fire({
+                imageUrl: "./LHY.jpg",
+                title: "走，工程館E531",
+                text: "林X儀:待會線上測驗，要不要考，自己看著辦",
+                showDenyButton: true,
+                confirmButtonText: '乖乖測驗',
+                denyButtonText: '直接走出教室',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                }
+                else if (result.isDenied){
+                    Swal.fire({
+                        title: "膽子真大",
+                        text: "林老師的課還不考試...有前途，可是沒未來了",
+                    }).then((result) => {
+                        fail();
+                    });
+                }
+            });
+        }
+        function Q3(){
+            Swal.fire({
+                imageUrl: "./phone.jpg",
+                title: "哀，到學校了",
+                text: "打開手機看一下第一節什麼課啊?",
+                showDenyButton: true,
+                confirmButtonText: '嵌入式系統概論(老師:劉X齊)',
+                denyButtonText: '計算機組織與結構(老師:林X儀)',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "怎麼可能",
+                        text: "乖乖接受林老師的愛吧",
+                    }).then((result) => {
+                        fail();
+                    });
+                }
+                else if (result.isDenied){
+                    Q4();
+                }
+            });
+        }
+        function Q2(){
+            Swal.fire({
+                imageUrl: "./transportation.jpg",
+                title: "對，你還有專題沒做、學分沒修完、甚至連服務學習時數都不夠",
+                text: "出發往學校吧~要怎麼去啊?",
+                showDenyButton: true,
+                confirmButtonText: 'GP125國民買菜車',
+                denyButtonText: '人人都能上的公車',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Q3();
+                }
+                else if (result.isDenied){
+                    Swal.fire({
+                            title: "都快遲到了，還搭公車",
+                            text: "你光是騎到學校就要40分鐘了，搭公車怎麼來的及",
+                        }).then((result) => {
+                            fail();
+                        });
+                }
+            });
+        }
+        function Q1() {
+            Swal.fire({
+                title: "早上起床，打開窗戶，耀眼的陽光灑進來",
+                text: "今天真是美好的一天?",
+                showDenyButton: true,
+                confirmButtonText: '是阿',
+                denyButtonText: '放屁',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "你好樂觀阿",
+                            text: "這是好事，但不是正常人",
+                        }).then((result) => {
+                            fail();
+                        });
+                }
+                else if (result.isDenied){
+                    Q2();
+                }
+            });
+        }
+        function start_game(){
+            Swal.fire({
+                title: '大學生活',
+                input: 'text',
+                inputPlaceholder: '請輸入暱稱',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+            }).then((name) => {
+                if (name.value) {
+                    Swal.fire({
+                        title: name.value,
+                        text: "這名子可以，可惜差我「億」點",
+                    }).then((result) => {
+                        Q1();
+                    });
+                } 
+                else if(name.value == ""){
+                    Swal.fire({
+                        title: '名子呢?',
+                        text: '你沒名子嗎?你爸媽沒給你取嗎?可憐阿',
+                        confirmButtonText: '確定',
+                    }).then((result) => {
+                        start_game();
+                    });
+                }
+                else {
+                    Swal.fire({
+                        title: '取消',
+                        text: '你玩不起，你個小垃圾',
+                    });
+                }
+            });
+        }
     </script>
