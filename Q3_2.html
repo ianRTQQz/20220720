@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homework 0720</title>
+</head>
+<style>
+    .box{
+        width: 100px;
+        height: 100px;
+        text-align:center;
+        line-height: 100px;
+        color: white;
+    }
+</style>
+<body onload="random_color()">
+    <div class="box" id="hexval"></div>
+    <button type="button" onclick="set_R()">R</button>
+    <input type="range" min="0" max="255" id="RR" oninput="range_R()">
+    <p id="demo1" style="display:inline;"></p><br>
+    <button type="button" onclick="set_G()">G</button>
+    <input type="range" min="0" max="255" id="RG" oninput="range_G()">
+    <p id="demo2" style="display:inline;"></p><br>
+    <button type="button" onclick="set_B()">B</button>
+    <input type="range" min="0" max="255" id="RB" oninput="range_B()">
+    <p id="demo3" style="display:inline;"></p><br>
+    <button type="button" onclick="add()">+</button>
+    <button type="button" onclick="sub()">-</button>
+    <button type="button" onclick="random_color()">?</button>
+</body>
+</html>
+<script>
+    var box = document.querySelector('.box');
+    var input_rangeR = document.getElementById('RR');
+    var input_rangeG = document.getElementById('RG');
+    var input_rangeB = document.getElementById('RB');
+    var r, g, b;
+
+    function updata(){
+        box.style.background = `rgb(${r},${g},${b})`;
+        input_rangeR.value = r;
+        input_rangeG.value = g;
+        input_rangeB.value = b;
+        document.getElementById("demo1").innerHTML = r;
+        document.getElementById("demo2").innerHTML = g;
+        document.getElementById("demo3").innerHTML = b;
+        ConvertRGBtoHex(r, g, b)
+    }
+
+    function random_color(){
+        r = Math.floor(Math.random() * 256); //隨機產生256以內r值
+        g = Math.floor(Math.random() * 256); //隨機產生256以內g值
+        b = Math.floor(Math.random() * 256); //隨機產生256以內b值
+        updata()
+    }
+
+    function range_R(){
+        var color_val = document.getElementById("RR").value;
+        document.getElementById("demo1").innerHTML = color_val;
+        box.style.background = `rgb(${color_val},${g},${b})`;
+        r = color_val;
+    }
+    function range_G(){
+        var color_val = document.getElementById("RG").value;
+        document.getElementById("demo2").innerHTML = color_val;
+        box.style.background = `rgb(${r},${color_val},${b})`;
+        g = color_val;
+    }
+    function range_B(){
+        var color_val = document.getElementById("RB").value;
+        document.getElementById("demo3").innerHTML = color_val;
+        box.style.background = `rgb(${r},${g},${color_val})`;
+        b = color_val;
+    }
+
+    function set_R(){
+        var color_val = prompt("請輸入紅色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${color_val},${g},${b})`;
+            r = color_val;
+            input_rangeR.value = r;
+            document.getElementById("demo1").innerHTML = color_val;
+            document.getElementById("demo2").innerHTML = g;
+            document.getElementById("demo3").innerHTML = b;
+        }
+        else {
+            set_R();
+        }
+    }
+
+    function set_G(){
+        var color_val = prompt("請輸入綠色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${r},${color_val},${b})`;
+            g = color_val;
+            input_rangeG.value = g;
+            document.getElementById("demo2").innerHTML = color_val;
+            document.getElementById("demo1").innerHTML = r;
+            document.getElementById("demo3").innerHTML = b;
+        }
+        else {
+            set_G();
+        }
+    }
+
+    function set_B(){
+        var color_val = prompt("請輸入藍色數值：", "0~255");
+        if (color_val == null) {
+            return;
+        }
+        else if(0<=color_val && color_val<=255){
+            box.style.background = `rgb(${r},${g},${color_val})`;
+            b = color_val;
+            input_rangeB.value = b;
+            document.getElementById("demo3").innerHTML = color_val;
+            document.getElementById("demo1").innerHTML = r;
+            document.getElementById("demo2").innerHTML = g;
+        }
+        else {
+            set_B();
+        }
+    }
+
+    function add(){
+        if(r<255){r++;}
+        if(g<255){g++;}
+        if(b<255){b++;}
+        box.style.background = `rgb(${r},${g},${b})`;
+        input_rangeR.value = r;
+        input_rangeG.value = g;
+        input_rangeB.value = b;
+        document.getElementById("demo1").innerHTML = r;
+        document.getElementById("demo2").innerHTML = g;
+        document.getElementById("demo3").innerHTML = b;
+    }
+    function sub(){
+        if(r>0){r--;}
+        if(g>0){g--;}
+        if(b>0){b--;}
+        box.style.background = `rgb(${r},${g},${b})`;
+        input_rangeR.value = r;
+        input_rangeG.value = g;
+        input_rangeB.value = b;
+        document.getElementById("demo1").innerHTML = r;
+        document.getElementById("demo2").innerHTML = g;
+        document.getElementById("demo3").innerHTML = b;
+    }
+
+    function ColorToHex(color) {
+        
+        var hexadecimal = color.toString(16);
+
+        if (hexadecimal.length == 1){
+            return "0" + hexadecimal;
+        }
+        else{
+            return hexadecimal;
+        }
+    }
+
+    function ConvertRGBtoHex(red, green, blue) {
+        a = ColorToHex(red)
+        b = ColorToHex(green)
+        c = ColorToHex(blue)
+        document.getElementById("hexval").innerHTML = "#" + a + b + c;
+    }
+
+</script>
