@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Homework 0720</title>
+</head>
+<style>
+    .swal2-popup.swal2-modal {
+        font-size: 10pt; 
+    }
+    .swal2-modal .swal2-title {
+        font-size: 1.2em;
+    }
+    .swal2-modal button {
+        padding: 3px 6px;
+    }
+</style>
+<body onload="confirmTest()">
+
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+
+    function alert() {
+        Swal.fire(
+            "查詢作業失敗", //標題 
+            "您所輸入的序號不存在或是系統被玩壞了!", //訊息內容(可省略)
+            "error" //圖示(可省略) success/info/warning/error/question
+                //圖示範例：https://sweetalert2.github.io/#icons
+        );
+    }
+    function confirm() {
+        Swal.fire({
+            title: "操作確認",
+            text: "請點選你想按的按鈕",
+            showCancelButton: true
+        }).then(function(result) {
+           if (result.value) {
+                Swal.fire("您按了OK");
+           }
+           else {
+               Swal.fire("您選擇了Cancel");
+           }
+        });
+    }
+
+    Swal.fire({
+        title: '大學生活',
+        input: 'text',
+        inputPlaceholder: '請輸入暱稱',
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+    }, function(name) {
+        if (!name) {
+            Swal.fire({
+            title: '取消',
+            text: '這麼簡單的題目，你也不回答嗎？！',
+            type: 'warning'
+            });
+        } else if(name == ""){
+            swal({
+                title: '答對啦！',
+                text: '你真是天才！',
+                type: 'success'
+            });
+        }
+        else {
+            swal({
+                title: '答錯囉！',
+                text: '再想想看，很簡單的！',
+                type: 'error'
+            });
+        }
+    
+        });
+
+
+    function start_game(){
+        var name = prompt("請輸入暱稱");
+        if (name == null){
+            alert("你玩不起，你個小垃圾");
+        }
+        else if(name == ""){
+            alert("你沒名子嗎?你爸媽沒給你取嗎?可憐阿");
+            start_game()
+        }
+        else{
+            alert(name+"這名子可以，可惜差我「億」點");
+        }
+    }
+    
+    
+</script>
