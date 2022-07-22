@@ -43,33 +43,30 @@
         document.getElementById("demo1").innerHTML = r;
         document.getElementById("demo2").innerHTML = g;
         document.getElementById("demo3").innerHTML = b;
-        ConvertRGBtoHex(r, g, b)
+        document.getElementById("hexval").innerHTML = "#" + ColorToHex(r) + ColorToHex(g) + ColorToHex(b);
     }
 
     function random_color(){
         r = Math.floor(Math.random() * 256); //隨機產生256以內r值
         g = Math.floor(Math.random() * 256); //隨機產生256以內g值
         b = Math.floor(Math.random() * 256); //隨機產生256以內b值
-        updata()
+        updata();
     }
 
     function range_R(){
         var color_val = document.getElementById("RR").value;
-        document.getElementById("demo1").innerHTML = color_val;
-        box.style.background = `rgb(${color_val},${g},${b})`;
         r = color_val;
+        updata();
     }
     function range_G(){
         var color_val = document.getElementById("RG").value;
-        document.getElementById("demo2").innerHTML = color_val;
-        box.style.background = `rgb(${r},${color_val},${b})`;
         g = color_val;
+        updata();
     }
     function range_B(){
         var color_val = document.getElementById("RB").value;
-        document.getElementById("demo3").innerHTML = color_val;
-        box.style.background = `rgb(${r},${g},${color_val})`;
         b = color_val;
+        updata();
     }
 
     function set_R(){
@@ -78,48 +75,34 @@
             return;
         }
         else if(0<=color_val && color_val<=255){
-            box.style.background = `rgb(${color_val},${g},${b})`;
             r = color_val;
-            input_rangeR.value = r;
-            document.getElementById("demo1").innerHTML = color_val;
-            document.getElementById("demo2").innerHTML = g;
-            document.getElementById("demo3").innerHTML = b;
+            updata();
         }
         else {
             set_R();
         }
     }
-
     function set_G(){
         var color_val = prompt("請輸入綠色數值：", "0~255");
         if (color_val == null) {
             return;
         }
         else if(0<=color_val && color_val<=255){
-            box.style.background = `rgb(${r},${color_val},${b})`;
             g = color_val;
-            input_rangeG.value = g;
-            document.getElementById("demo2").innerHTML = color_val;
-            document.getElementById("demo1").innerHTML = r;
-            document.getElementById("demo3").innerHTML = b;
+            updata();
         }
         else {
             set_G();
         }
     }
-
     function set_B(){
         var color_val = prompt("請輸入藍色數值：", "0~255");
         if (color_val == null) {
             return;
         }
         else if(0<=color_val && color_val<=255){
-            box.style.background = `rgb(${r},${g},${color_val})`;
             b = color_val;
-            input_rangeB.value = b;
-            document.getElementById("demo3").innerHTML = color_val;
-            document.getElementById("demo1").innerHTML = r;
-            document.getElementById("demo2").innerHTML = g;
+            updata();
         }
         else {
             set_B();
@@ -130,44 +113,23 @@
         if(r<255){r++;}
         if(g<255){g++;}
         if(b<255){b++;}
-        box.style.background = `rgb(${r},${g},${b})`;
-        input_rangeR.value = r;
-        input_rangeG.value = g;
-        input_rangeB.value = b;
-        document.getElementById("demo1").innerHTML = r;
-        document.getElementById("demo2").innerHTML = g;
-        document.getElementById("demo3").innerHTML = b;
+        updata();
     }
     function sub(){
         if(r>0){r--;}
         if(g>0){g--;}
         if(b>0){b--;}
-        box.style.background = `rgb(${r},${g},${b})`;
-        input_rangeR.value = r;
-        input_rangeG.value = g;
-        input_rangeB.value = b;
-        document.getElementById("demo1").innerHTML = r;
-        document.getElementById("demo2").innerHTML = g;
-        document.getElementById("demo3").innerHTML = b;
+        updata();
     }
 
     function ColorToHex(color) {
-        
-        var hexadecimal = color.toString(16);
-
+        var hexadecimal = parseInt(color, 10).toString(16);
         if (hexadecimal.length == 1){
             return "0" + hexadecimal;
         }
         else{
             return hexadecimal;
         }
-    }
-
-    function ConvertRGBtoHex(red, green, blue) {
-        a = ColorToHex(red)
-        b = ColorToHex(green)
-        c = ColorToHex(blue)
-        document.getElementById("hexval").innerHTML = "#" + a + b + c;
     }
 
 </script>
