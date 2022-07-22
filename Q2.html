@@ -3,94 +3,169 @@
 <head>
     <title>My Homework 0720</title>
 </head>
-<style>
-    .swal2-popup.swal2-modal {
-        font-size: 10pt; 
-    }
-    .swal2-modal .swal2-title {
-        font-size: 1.2em;
-    }
-    .swal2-modal button {
-        padding: 3px 6px;
-    }
-</style>
-<body onload="confirmTest()">
+<body onload="start_game()">
 
 
 </body>
+
 </html>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script>
-
-    function alert() {
-        Swal.fire(
-            "查詢作業失敗", //標題 
-            "您所輸入的序號不存在或是系統被玩壞了!", //訊息內容(可省略)
-            "error" //圖示(可省略) success/info/warning/error/question
-                //圖示範例：https://sweetalert2.github.io/#icons
-        );
-    }
-    function confirm() {
-        Swal.fire({
-            title: "操作確認",
-            text: "請點選你想按的按鈕",
-            showCancelButton: true
-        }).then(function(result) {
-           if (result.value) {
-                Swal.fire("您按了OK");
-           }
-           else {
-               Swal.fire("您選擇了Cancel");
-           }
-        });
-    }
-
-    Swal.fire({
-        title: '大學生活',
-        input: 'text',
-        inputPlaceholder: '請輸入暱稱',
-        showCancelButton: true,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消',
-    }, function(name) {
-        if (!name) {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function success(){
             Swal.fire({
-            title: '取消',
-            text: '這麼簡單的題目，你也不回答嗎？！',
-            type: 'warning'
-            });
-        } else if(name == ""){
-            swal({
-                title: '答對啦！',
-                text: '你真是天才！',
-                type: 'success'
+                icon: "success",
+                title: name+"恭喜阿",
+                text: "你做完林老師的線上測驗了",
             });
         }
-        else {
-            swal({
-                title: '答錯囉！',
-                text: '再想想看，很簡單的！',
-                type: 'error'
+        function fail(){
+            Swal.fire({
+                icon: "error",
+                title: "失敗",
+                text: "可悲阿",
             });
         }
-    
-        });
-
-
-    function start_game(){
-        var name = prompt("請輸入暱稱");
-        if (name == null){
-            alert("你玩不起，你個小垃圾");
+        function Q5(){
+            Swal.fire({
+                imageUrl: "./exam.jpg",
+                title: "拿出筆電，準備考試吧",
+                text: "題目如上圖，請問答案是?",
+                showDenyButton: true,
+                confirmButtonText: '12倍',
+                denyButtonText: '16倍',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "完了，準備重修",
+                        text: "林老師上課都講過了，這麼簡單還不會，被當活該",
+                    }).then((result) => {
+                        fail();
+                    });
+                }
+                else if (result.isDenied){
+                    success();
+                }
+            });
         }
-        else if(name == ""){
-            alert("你沒名子嗎?你爸媽沒給你取嗎?可憐阿");
-            start_game()
+        function Q4(){
+            Swal.fire({
+                imageUrl: "./LHY.jpg",
+                title: "走，工程館E531",
+                text: "林X儀:待會線上測驗，要不要考，自己看著辦",
+                showDenyButton: true,
+                confirmButtonText: '乖乖測驗',
+                denyButtonText: '直接走出教室',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Q5();
+                }
+                else if (result.isDenied){
+                    Swal.fire({
+                        title: "膽子真大",
+                        text: "林老師的課還不考試...有前途，可是沒未來了",
+                    }).then((result) => {
+                        fail();
+                    });
+                }
+            });
         }
-        else{
-            alert(name+"這名子可以，可惜差我「億」點");
+        function Q3(){
+            Swal.fire({
+                imageUrl: "./phone.jpg",
+                title: "哀，到學校了",
+                text: "打開手機看一下第一節什麼課啊?",
+                showDenyButton: true,
+                confirmButtonText: '嵌入式系統概論(老師:劉X齊)',
+                denyButtonText: '計算機組織與結構(老師:林X儀)',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "怎麼可能",
+                        text: "乖乖接受林老師的愛吧",
+                    }).then((result) => {
+                        fail();
+                    });
+                }
+                else if (result.isDenied){
+                    Q4();
+                }
+            });
         }
-    }
-    
-    
-</script>
+        function Q2(){
+            Swal.fire({
+                imageUrl: "./transportation.jpg",
+                title: "對，你還有專題沒做、學分沒修完、甚至連服務學習時數都不夠",
+                text: "出發往學校吧~要怎麼去啊?",
+                showDenyButton: true,
+                confirmButtonText: 'GP125國民買菜車',
+                denyButtonText: '人人都能上的公車',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Q3();
+                }
+                else if (result.isDenied){
+                    Swal.fire({
+                            title: "都快遲到了，還搭公車",
+                            text: "你光是騎到學校就要40分鐘了，搭公車怎麼來的及",
+                        }).then((result) => {
+                            fail();
+                        });
+                }
+            });
+        }
+        function Q1() {
+            Swal.fire({
+                title: "早上起床，打開窗戶，耀眼的陽光灑進來",
+                text: "今天真是美好的一天?",
+                showDenyButton: true,
+                confirmButtonText: '是阿',
+                denyButtonText: '放屁',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "你好樂觀阿",
+                            text: "這是好事，但不是正常人",
+                        }).then((result) => {
+                            fail();
+                        });
+                }
+                else if (result.isDenied){
+                    Q2();
+                }
+            });
+        }
+        function start_game(){
+            Swal.fire({
+                title: '大學生活',
+                input: 'text',
+                inputPlaceholder: '請輸入暱稱',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+            }).then((name) => {
+                if (name.value) {
+                    Swal.fire({
+                        title: name.value,
+                        text: "這名子可以，可惜差我「億」點",
+                    }).then((result) => {
+                        Q1();
+                    });
+                } 
+                else if(name.value == ""){
+                    Swal.fire({
+                        title: '名子呢?',
+                        text: '你沒名子嗎?你爸媽沒給你取嗎?可憐阿',
+                        confirmButtonText: '確定',
+                    }).then((result) => {
+                        start_game();
+                    });
+                }
+                else {
+                    Swal.fire({
+                        title: '取消',
+                        text: '你玩不起，你個小垃圾',
+                    });
+                }
+            });
+        }
+    </script>
